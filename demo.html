@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WOPT</title>
+    <style>
+        /* CSS styles for the layout */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .search-icon img, .live-icon img, .footer-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .menu-button-container {
+            position: relative;
+        }
+
+        .menu-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background-color: green;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .menu-button div {
+            width: 100%;
+            height: 3px;
+            background-color: white;
+        }
+
+        .menu-dropdown {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            width: 200px;
+        }
+
+        .menu-dropdown a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .menu-dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .menu-toggle:checked + .menu-dropdown {
+            display: block;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+        }
+
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+        }
+
+        .icon-label {
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .container {
+            position: absolute;
+            top: 50px;
+            right: -300px;
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .container.show {
+            right: 10px;
+        }
+
+        .container form {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container textarea {
+            width: 200px;
+            height: 50px;
+            margin-bottom: 10px;
+            resize: none;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .container input[type="submit"] {
+            padding: 8px 16px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .container input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+
+        /* Media queries for responsive design */
+        @media only screen and (max-width: 768px) {
+            .search-icon img, .live-icon img, .footer-icon {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .search-icon img, .live-icon img, .footer-icon {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">WOPT</div>
+        <div class="search-icon" onclick="searchFunction()">
+            <img src="c:\Users\MICHAEL'S PC\Downloads\23011500.jpg" alt="Search Icon">
+        </div>
+        <div class="live-icon" onclick="goLive()">
+            <img class="icon" src="c:\Users\MICHAEL'S PC\Downloads\2326005.png" alt="Live Icon">
+        </div>
+    </header>
+
+    <div class="menu-button-container">
+        <input type="checkbox" id="menuToggle" class="menu-toggle">
+        <label for="menuToggle" class="menu-button">
+            <div></div>
+            <div></div>
+            <div></div>
+        </label>
+        <div class="menu-dropdown" id="menuDropdown">
+            <a href="#community-forums">Community Forums</a>
+            <a href="#events-competitions">Events and Competitions</a>
+            <a href="#top-talents">Top Talents</a>
+            <a href="#account-balance">Account Balance</a>
+            <a href="#wopt-verified">WOPT Verified</a>
+            <a href="#help-support">Help and Support</a>
+            <a href="#settings">Settings</a>
+            <a href="#data-analysis">Data Analysis and Insights</a>
+            <a href="#about">About</a>
+            <a href="#logout">Logout</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-item" onclick="toggleTalentForm()">
+            <img class="footer-icon" src="c:\Users\MICHAEL'S PC\Downloads\60817.png" alt="Home Icon">
+            <span class="icon-label">Home</span>
+        </div>
+        <a href="#messages" class="footer-item" onclick="goMessages()">
+            <img class="footer-icon" src="c:\Users\MICHAEL'S PC\Downloads\message_icon.png" alt="Messages Icon">
+            <span class="icon-label">Messages</span>
+        </a>
+        <a href="#videos" class="footer-item" onclick="goVideos()">
+            <img class="footer-icon" src="c:\Users\MICHAEL'S PC\Downloads\videos_icon.png" alt="Videos Icon">
+            <span class="icon-label">Videos</span>
+        </a>
+        <a href="#paid-ads" class="footer-item" onclick="goPaidAds()">
+            <img class="footer-icon" src="c:\Users\MICHAEL'S PC\Downloads\paid_ads_icon.png" alt="Paid Ads Icon">
+            <span class="icon-label">Paid Ads</span>
+        </a>
+        <a href="#reels" class="footer-item" onclick="goReels()">
+            <img class="footer-icon" src="c:\Users\MICHAEL'S PC\Downloads\reels_icon.png" alt="Reels Icon">
+            <span class="icon-label">Reels</span>
+        </a>
+        <a href="#notifications" class="footer-item" onclick="goNotifications()">
+            <img class="footer-icon" src="c:\Users\MICHAEL'S PC\Downloads\notifications_icon.png" alt="Notifications Icon">
+            <span class="icon-label">Notifications</span>
+        </a>
+    </footer>
+
+    <div class="container" id="talentFormContainer">
+        <form action="/publish_action.php" method="post" enctype="multipart/form-data">
+            <textarea name="publish_content" placeholder="What's your talent?" rows="2" required></textarea>
+            <input type="submit" value="Publish">
+        </form>
+    </div>
+
+    <script>
+        function toggleTalentForm() {
+            var container = document.getElementById('talentFormContainer');
+            container.classList.toggle('show');
+        }
+
+       
+        function searchFunction() {
+            alert('Search function triggered.');
+        }
+
+      
+        function goLive() {
+            alert('Go live function triggered.');
+        }
+
+        document.getElementById('menuToggle').addEventListener('change', function() {
+            var dropdown = document.getElementById('menuDropdown');
+            if (this.checked) {
+                dropdown.style.display = 'block';
+            } else {
+                dropdown.style.display = 'none';
+            }
+        });
