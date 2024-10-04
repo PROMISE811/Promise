@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker - Home</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9966, #ff5e62); 
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15); 
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
+            max-width: 600px;
+            width: 100%;
+            backdrop-filter: blur(10px); 
+        }
+
+        
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-bottom: 35px;
+            color: #f8f8f8;
+        }
+
+        
+        .button {
+            background-color: #ff5e62; 
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .button:hover {
+            background-color: #ff9966; 
+            border-color: white;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); 
+        }
+
+        
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #f1f1f1;
+        }
+
+        footer p {
+            opacity: 0.85;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Budget Tracker</h1>
+            <p>Manage your expenses and track your budget effortlessly.</p>
+        </header>
+        
+        <div class="content">
+            <a href="{% url 'login' %}" class="button">Login</a>
+            <a href="{% url 'register' %}" class="button">Register</a>
+        </div>
+
+        <footer>
+            <p>© 2024 Budget Tracker. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
