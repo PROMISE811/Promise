@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUDGET TRACKER - DASHBOARD</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #36d1dc, #5b86e5); 
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.1); 
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+
+        
+        ul {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+
+        ul li {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        ul li:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        
+        a {
+            color: #ffd700; 
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #5b86e5;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+
+        a:hover {
+            background-color: #ffd700;
+            color: #333;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        
+        p {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <h2>Transactions:</h2>
+        <ul>
+            {%for transaction in transactions%}
+            <li>{{transaction.date}} - {{transaction.category.name}}: ${{transaction.amount}}</li>
+            {%empty%}
+            <li>No Transactions Recorded.</li>
+            {% endfor %}
+        </ul>
+        <h2>Budgets:</h2>
+        <ul>
+            {%for budget in budgets%}
+            <li>{{budget.category.name}}: ${{budget.limit}}</li>
+            {%empty%}
+            <li>No Budgets Set.</li>
+            {%endfor%}
+        </ul>
+        <p>
+            <a href="{% url 'add_transaction' %}">Add Transactions</a>
+            |
+            <a href="{% url 'add_budget' %}">Add Budget</a>
+        </p>
+    </div>
+</body>
+</html>
